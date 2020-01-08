@@ -16,15 +16,17 @@ namespace COD_Server_Monitor
       public List<MonitoredApp> applications;
       public Double Width;
       public Double Height;
+      public Boolean MinimizeToTray;
 
       public UserStorage ()
       {
          applications = new List<MonitoredApp> ();
          Width = 550;
          Height = 360;
+         MinimizeToTray = false;
       }
 
-      public static void Serialize (ObservableCollection<MonitoredApp> appList, Double Width, Double Height)
+      public static void Serialize (ObservableCollection<MonitoredApp> appList, Double Width, Double Height, Boolean MinimizeToTray)
       {
          if (!Directory.Exists (SETTINGS_DIR))
             Directory.CreateDirectory (SETTINGS_DIR);
@@ -35,13 +37,14 @@ namespace COD_Server_Monitor
 
          storage.Width = Width;
          storage.Height = Height;
+         storage.MinimizeToTray = MinimizeToTray;
 
          var serializer = new DataContractSerializer (typeof (UserStorage));
          using (XmlWriter xml = XmlWriter.Create (SETTINGS_XML))
             serializer.WriteObject (xml, storage);
       }
 
-      public static void Deserialize (ref ObservableCollection<MonitoredApp> appList, ref Double Width, ref Double Height)
+      public static void Deserialize (ref ObservableCollection<MonitoredApp> appList, ref Double Width, ref Double Height, ref Boolean MinimizeToTray)
       {
          UserStorage storage = null;
 
@@ -61,6 +64,7 @@ namespace COD_Server_Monitor
 
          Width = storage.Width;
          Height = storage.Height;
+         MinimizeToTray = storage.MinimizeToTray;
       }
    }
 }

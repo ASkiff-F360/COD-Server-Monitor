@@ -27,29 +27,31 @@ namespace COD_Server_Monitor
       private void Window_Loaded (object sender, RoutedEventArgs e)
       {
          Double width = 0, height = 0;
-         UserStorage.Deserialize(ref AppCollection, ref width, ref height);
+         Boolean TrayMinimize = false;
+         UserStorage.Deserialize (ref AppCollection, ref width, ref height, ref TrayMinimize);
 
          this.Width = width;
          this.Height = height;
+         this.MinimizeToTray.IsChecked = TrayMinimize;
 
          ApplicationGrid.ItemsSource = AppCollection;
       }
 
       private void Window_Closing (object sender, System.ComponentModel.CancelEventArgs e)
       {
-         UserStorage.Serialize (AppCollection, this.Width, this.Height);
+         UserStorage.Serialize (AppCollection, this.Width, this.Height, this.MinimizeToTray.IsChecked);
       }
 
       private void Window_StateChanged (object sender, EventArgs e)
       {
-         if(this.WindowState == WindowState.Minimized)
+         if (this.WindowState == WindowState.Minimized && this.MinimizeToTray.IsChecked)
          {
             this.ShowInTaskbar = false;
          }
          else if (this.WindowState == WindowState.Normal)
          {
             this.ShowInTaskbar = true;
-            this.Activate();
+            this.Activate ();
          }
       }
 
@@ -68,7 +70,7 @@ namespace COD_Server_Monitor
       {
          MonitoredApp monitoredApp = ((FrameworkElement) sender).DataContext as MonitoredApp;
 
-         StartApplication(monitoredApp);
+         StartApplication (monitoredApp);
 
          if (!AppMonitor.IsEnabled)
             AppMonitor.Start ();
@@ -76,9 +78,9 @@ namespace COD_Server_Monitor
 
       private void ApplicationGrid_RemoveClick (object sender, RoutedEventArgs e)
       {
-         MonitoredApp monitoredApp = ((FrameworkElement)sender).DataContext as MonitoredApp;
+         MonitoredApp monitoredApp = ((FrameworkElement) sender).DataContext as MonitoredApp;
 
-         AppCollection.Remove(monitoredApp);
+         AppCollection.Remove (monitoredApp);
       }
 
       private void OutputText_ClearOutput (object sender, RoutedEventArgs e)
@@ -88,16 +90,16 @@ namespace COD_Server_Monitor
 
       private void CheckApplicationStatus (object sender, EventArgs e)
       {
-         foreach(MonitoredApp app in AppCollection)
+         foreach (MonitoredApp app in AppCollection)
          {
-            if(!app.IsRunning || app.ProcessID == 0)
+            if (!app.IsRunning || app.ProcessID == 0)
                continue;
 
             // Check to see if the process has exited
             Process process = null;
             try
             {
-               process = Process.GetProcessById(app.ProcessID);
+               process = Process.GetProcessById (app.ProcessID);
             }
             catch
             {
@@ -107,24 +109,24 @@ namespace COD_Server_Monitor
                OutputText.Text += String.Format ("{0} is no longer running\n", app.Name);
 
                if (app.AutoRestart)
-                  StartApplication(app);
+                  StartApplication (app);
 
                continue;
             }
 
             // Check to see if process is no longer responding
-            process.Refresh();
-            if(!process.Responding || process.MainWindowTitle.Contains("ERROR"))
+            process.Refresh ();
+            if (!process.Responding || process.MainWindowTitle.Contains ("ERROR"))
             {
                app.ProcessID = 0;
                app.IsRunning = false;
                OutputText.Text += String.Format ("{0} is no longer responding\n", app.Name);
 
-               if(app.AutoRestart)
+               if (app.AutoRestart)
                {
-                  process.Kill();
+                  process.Kill ();
 
-                  StartApplication(app);
+                  StartApplication (app);
                }
             }
          }
@@ -132,11 +134,21 @@ namespace COD_Server_Monitor
 
       private void StartApplication (MonitoredApp app)
       {
-         bool success = app.StartApp();
+         bool success = app.StartApp ();
 
-         OutputText.Text += success ? 
+         OutputText.Text += success ?
             String.Format ("{0} started with args: {1}\n", app.Name, app.Arguments) :
             String.Format ("Unable to start {0}\n", app.Path);
+      }
+
+      private void NotifyMenu_ShowApp (object sender, RoutedEventArgs e)
+      {
+         this.WindowState = WindowState.Normal;
+      }
+
+      private void NotifyMenu_ExitApp (object sender, RoutedEventArgs e)
+      {
+         Application.Current.Shutdown ();
       }
    }
 }

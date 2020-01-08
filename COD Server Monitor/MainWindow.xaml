@@ -22,7 +22,9 @@
         <tb1:TaskbarIcon IconSource="pack://application:,,,/COD Server Monitor;component/Resources/icon.ico">
             <tb1:TaskbarIcon.ContextMenu>
                 <ContextMenu>
-                    <MenuItem Header="Exit"/>
+                    <MenuItem Name="MinimizeToTray" Header="Minimize To Tray" IsCheckable="True"/>
+                    <MenuItem Header="Show App" Click="NotifyMenu_ShowApp" />
+                    <MenuItem Header="Exit App" Click="NotifyMenu_ExitApp"/>
                 </ContextMenu>
             </tb1:TaskbarIcon.ContextMenu>
         </tb1:TaskbarIcon>
