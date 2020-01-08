@@ -4,11 +4,12 @@ using System.Diagnostics;
 using System.Windows;
 using System.Windows.Threading;
 
+using Hardcodet.Wpf.TaskbarNotification;
+
 namespace COD_Server_Monitor
 {
    public partial class MainWindow : Window
    {
-      private System.Windows.Forms.NotifyIcon notifyIcon;
       private ObservableCollection<MonitoredApp> AppCollection;
       private DispatcherTimer AppMonitor;
 
@@ -21,16 +22,6 @@ namespace COD_Server_Monitor
          AppMonitor.Interval = new TimeSpan (0, 0, 5); //Every 5 seconds
 
          AppCollection = new ObservableCollection<MonitoredApp> ();
-
-         System.IO.Stream iconStream = Application.GetResourceStream(new Uri("pack://application:,,,/COD Server Monitor;component/Resources/icon.ico")).Stream;
-
-         notifyIcon = new System.Windows.Forms.NotifyIcon();
-         notifyIcon.Icon = new System.Drawing.Icon(iconStream);
-         notifyIcon.Visible = true;
-         notifyIcon.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler((object s, System.Windows.Forms.MouseEventArgs e) =>
-         {
-            this.WindowState = WindowState.Normal;
-         });
       }
 
       private void Window_Loaded (object sender, RoutedEventArgs e)

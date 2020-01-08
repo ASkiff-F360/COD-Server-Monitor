@@ -4,8 +4,10 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:COD_Server_Monitor"
+        xmlns:tb1="http://www.hardcodet.net/taskbar"
         mc:Ignorable="d"
         Title="COD Server Monitor" Height="360.381" Width="553.072" Background="#FFBDBCBC" Foreground="Black" Margin="0" Icon="pack://application:,,,/Resources/icon.png" Loaded="Window_Loaded" Closing="Window_Closing" WindowStartupLocation="CenterScreen" StateChanged="Window_StateChanged">
+
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="60*"/>
@@ -16,6 +18,14 @@
         <StackPanel Grid.Row="0" Background="#FFBDBCBC"/>
         <GridSplitter Grid.Row="1" HorizontalAlignment="Stretch" VerticalAlignment="Center" Background="#FF747474" Height="5"/>
         <StackPanel Grid.Row="2" Background="#FFBDBCBC"/>
+
+        <tb1:TaskbarIcon IconSource="pack://application:,,,/COD Server Monitor;component/Resources/icon.ico">
+            <tb1:TaskbarIcon.ContextMenu>
+                <ContextMenu>
+                    <MenuItem Header="Exit"/>
+                </ContextMenu>
+            </tb1:TaskbarIcon.ContextMenu>
+        </tb1:TaskbarIcon>
 
         <DataGrid x:Name="ApplicationGrid" Grid.Row="0" Margin="10,10,10,4" AutoGenerateColumns="False" ColumnWidth="*" SelectionUnit="Cell" CanUserAddRows="False" HeadersVisibility="Column">
             <DataGrid.ContextMenu>
