@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:COD_Server_Monitor"
         mc:Ignorable="d"
-        Title="COD Server Monitor" Height="360.381" Width="553.072" Background="#FFBDBCBC" Foreground="Black" Margin="0" Icon="Resources/icon.png" Loaded="Window_Loaded" Closing="Window_Closing">
+        Title="COD Server Monitor" Height="360.381" Width="553.072" Background="#FFBDBCBC" Foreground="Black" Margin="0" Icon="pack://application:,,,/Resources/icon.png" Loaded="Window_Loaded" Closing="Window_Closing">
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="60*"/>
@@ -22,7 +22,7 @@
                 <ContextMenu>
                     <MenuItem Header="Add Application" Click="ApplicationGrid_ContextClick">
                         <MenuItem.Icon>
-                            <Image Source="Resources/plus.png"/>
+                            <Image Source="pack://application:,,,/Resources/plus.png"/>
                         </MenuItem.Icon>
                     </MenuItem>
                 </ContextMenu>
@@ -71,7 +71,7 @@
                 <ContextMenu>
                     <MenuItem Header="Clear Output" Click="OutputText_ClearOutput">
                         <MenuItem.Icon>
-                            <Image Source="Resources/clear.png"/>
+                            <Image Source="pack://application:,,,/Resources/clear.png"/>
                         </MenuItem.Icon>
                     </MenuItem>
                 </ContextMenu>

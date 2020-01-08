@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:COD_Server_Monitor"
         mc:Ignorable="d"
-        Title="Add Application" Height="190" Width="350" Background="#FFBDBCBC" MinHeight="190" MaxHeight="190" Icon="Resources/icon.png">
+        Title="Add Application" Height="190" Width="350" Background="#FFBDBCBC" MinHeight="190" MaxHeight="190" Icon="pack://application:,,,/Resources/icon.png">
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="*"/>
