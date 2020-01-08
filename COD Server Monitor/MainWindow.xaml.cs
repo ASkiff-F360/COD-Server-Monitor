@@ -19,7 +19,7 @@ namespace COD_Server_Monitor
 {
    public partial class MainWindow : Window
    {
-      private ObservableCollection<ApplicationRow> AppCollection;
+      private ObservableCollection<MonitoredApp> AppCollection;
       private DispatcherTimer AppMonitor;
 
       public MainWindow ()
@@ -30,9 +30,19 @@ namespace COD_Server_Monitor
          AppMonitor.Tick += new EventHandler (CheckApplicationStatus);
          AppMonitor.Interval = new TimeSpan (0, 0, 5); //Every 5 seconds
 
-         AppCollection = new ObservableCollection<ApplicationRow> ();
+         AppCollection = new ObservableCollection<MonitoredApp> ();
+      }
+
+      private void Window_Loaded (object sender, RoutedEventArgs e)
+      {
+         UserStorage.Deserialize(ref AppCollection);
 
          ApplicationGrid.ItemsSource = AppCollection;
+      }
+
+      private void Window_Closing (object sender, System.ComponentModel.CancelEventArgs e)
+      {
+         UserStorage.Serialize (AppCollection);
       }
 
       private void ApplicationGrid_ContextClick (object sender, RoutedEventArgs e)
@@ -42,27 +52,25 @@ namespace COD_Server_Monitor
 
          if (addApp.AddApplication)
          {
-            String FileName = System.IO.Path.GetFileName (addApp.FilePath);
-
-            AppCollection.Add (new ApplicationRow ()
-            {
-               Name = FileName,
-               Path = addApp.FilePath,
-               Arguments = addApp.Arguments,
-               AutoRestart = addApp.AutoRestart
-            });
+            AppCollection.Add (new MonitoredApp (addApp.FilePath, addApp.Arguments, addApp.AutoRestart));
          }
       }
 
       private void ApplicationGrid_StartClick (object sender, RoutedEventArgs e)
       {
-         if (!AppMonitor.IsEnabled)
-            AppMonitor.Start ();
+         MonitoredApp monitoredApp = ((FrameworkElement) sender).DataContext as MonitoredApp;
+
+         monitoredApp.IsRunning = true;
+
+         //if (!AppMonitor.IsEnabled)
+           // AppMonitor.Start ();
       }
 
       private void ApplicationGrid_RemoveClick (object sender, RoutedEventArgs e)
       {
+         MonitoredApp monitoredApp = ((FrameworkElement)sender).DataContext as MonitoredApp;
 
+         AppCollection.Remove(monitoredApp);
       }
 
       private void OutputText_ClearOutput (object sender, RoutedEventArgs e)
@@ -74,13 +82,5 @@ namespace COD_Server_Monitor
       {
 
       }
-   }
-
-   public class ApplicationRow
-   {
-      public String Name { get; set; }
-      public String Path { get; set; }
-      public String Arguments { get; set; }
-      public Boolean AutoRestart { get; set; }
    }
 }
