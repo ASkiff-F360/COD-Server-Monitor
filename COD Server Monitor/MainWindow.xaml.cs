@@ -8,6 +8,7 @@ namespace COD_Server_Monitor
 {
    public partial class MainWindow : Window
    {
+      private System.Windows.Forms.NotifyIcon notifyIcon;
       private ObservableCollection<MonitoredApp> AppCollection;
       private DispatcherTimer AppMonitor;
 
@@ -20,6 +21,16 @@ namespace COD_Server_Monitor
          AppMonitor.Interval = new TimeSpan (0, 0, 5); //Every 5 seconds
 
          AppCollection = new ObservableCollection<MonitoredApp> ();
+
+         System.IO.Stream iconStream = Application.GetResourceStream(new Uri("pack://application:,,,/COD Server Monitor;component/Resources/icon.ico")).Stream;
+
+         notifyIcon = new System.Windows.Forms.NotifyIcon();
+         notifyIcon.Icon = new System.Drawing.Icon(iconStream);
+         notifyIcon.Visible = true;
+         notifyIcon.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler((object s, System.Windows.Forms.MouseEventArgs e) =>
+         {
+            this.WindowState = WindowState.Normal;
+         });
       }
 
       private void Window_Loaded (object sender, RoutedEventArgs e)
@@ -36,6 +47,19 @@ namespace COD_Server_Monitor
       private void Window_Closing (object sender, System.ComponentModel.CancelEventArgs e)
       {
          UserStorage.Serialize (AppCollection, this.Width, this.Height);
+      }
+
+      private void Window_StateChanged (object sender, EventArgs e)
+      {
+         if(this.WindowState == WindowState.Minimized)
+         {
+            this.ShowInTaskbar = false;
+         }
+         else if (this.WindowState == WindowState.Normal)
+         {
+            this.ShowInTaskbar = true;
+            this.Activate();
+         }
       }
 
       private void ApplicationGrid_ContextClick (object sender, RoutedEventArgs e)

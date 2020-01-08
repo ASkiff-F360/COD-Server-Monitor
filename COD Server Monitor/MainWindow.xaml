@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:COD_Server_Monitor"
         mc:Ignorable="d"
-        Title="COD Server Monitor" Height="360.381" Width="553.072" Background="#FFBDBCBC" Foreground="Black" Margin="0" Icon="pack://application:,,,/Resources/icon.png" Loaded="Window_Loaded" Closing="Window_Closing">
+        Title="COD Server Monitor" Height="360.381" Width="553.072" Background="#FFBDBCBC" Foreground="Black" Margin="0" Icon="pack://application:,,,/Resources/icon.png" Loaded="Window_Loaded" Closing="Window_Closing" WindowStartupLocation="CenterScreen" StateChanged="Window_StateChanged">
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="60*"/>
@@ -66,7 +66,7 @@
             </DataGrid.Columns>
         </DataGrid>
 
-        <TextBlock x:Name="OutputText" Grid.Row="2" Background="#FFF0F0F0" Margin="10,4,10,10" Text="Text Text Text" Padding="4,0" ScrollViewer.CanContentScroll="True">
+        <TextBlock x:Name="OutputText" Grid.Row="2" Background="#FFF0F0F0" Margin="10,4,10,10" Text="" Padding="4,0" ScrollViewer.CanContentScroll="True">
             <TextBlock.ContextMenu>
                 <ContextMenu>
                     <MenuItem Header="Clear Output" Click="OutputText_ClearOutput">
