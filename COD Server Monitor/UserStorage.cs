@@ -14,13 +14,17 @@ namespace COD_Server_Monitor
       private static string SETTINGS_XML = SETTINGS_DIR + "\\settings.xml";
 
       public List<MonitoredApp> applications;
+      public Double Width;
+      public Double Height;
 
       public UserStorage ()
       {
          applications = new List<MonitoredApp> ();
+         Width = 550;
+         Height = 360;
       }
 
-      public static void Serialize (ObservableCollection<MonitoredApp> appList)
+      public static void Serialize (ObservableCollection<MonitoredApp> appList, Double Width, Double Height)
       {
          if (!Directory.Exists (SETTINGS_DIR))
             Directory.CreateDirectory (SETTINGS_DIR);
@@ -29,12 +33,15 @@ namespace COD_Server_Monitor
          foreach (MonitoredApp app in appList)
             storage.applications.Add (app);
 
+         storage.Width = Width;
+         storage.Height = Height;
+
          var serializer = new DataContractSerializer (typeof (UserStorage));
          using (XmlWriter xml = XmlWriter.Create (SETTINGS_XML))
             serializer.WriteObject (xml, storage);
       }
 
-      public static void Deserialize (ref ObservableCollection<MonitoredApp> appList)
+      public static void Deserialize (ref ObservableCollection<MonitoredApp> appList, ref Double Width, ref Double Height)
       {
          UserStorage storage = null;
 
@@ -51,6 +58,9 @@ namespace COD_Server_Monitor
 
          foreach (MonitoredApp app in storage.applications)
             appList.Add (app);
+
+         Width = storage.Width;
+         Height = storage.Height;
       }
    }
 }

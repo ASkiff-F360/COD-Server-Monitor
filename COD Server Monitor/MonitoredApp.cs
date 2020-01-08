@@ -1,5 +1,6 @@
 ﻿using System;
 using System.ComponentModel;
+using System.Diagnostics;
 using System.Runtime.Serialization;
 
 namespace COD_Server_Monitor
@@ -107,8 +108,29 @@ namespace COD_Server_Monitor
       public event PropertyChangedEventHandler PropertyChanged;
       protected void OnPropertyChanged(string PropertyName)
       {
-         Console.WriteLine("Property Changed: {0}", PropertyName);
          PropertyChanged?.Invoke (this, new PropertyChangedEventArgs (PropertyName));
+      }
+
+      public bool StartApp()
+      {
+         Process process = new Process ();
+         process.StartInfo.FileName = this.Path;
+         process.StartInfo.Arguments = this.Arguments;
+
+         process.Start ();
+
+         try
+         {
+            this.ProcessID = process.Id;
+            this.IsRunning = true;
+         }
+         catch
+         {
+            this.ProcessID = 0;
+            this.IsRunning = false;
+         }
+
+         return this.IsRunning;
       }
    }
 }

@@ -1,18 +1,7 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using System.Diagnostics;
 using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
 using System.Windows.Threading;
 
 namespace COD_Server_Monitor
@@ -35,14 +24,18 @@ namespace COD_Server_Monitor
 
       private void Window_Loaded (object sender, RoutedEventArgs e)
       {
-         UserStorage.Deserialize(ref AppCollection);
+         Double width = 0, height = 0;
+         UserStorage.Deserialize(ref AppCollection, ref width, ref height);
+
+         this.Width = width;
+         this.Height = height;
 
          ApplicationGrid.ItemsSource = AppCollection;
       }
 
       private void Window_Closing (object sender, System.ComponentModel.CancelEventArgs e)
       {
-         UserStorage.Serialize (AppCollection);
+         UserStorage.Serialize (AppCollection, this.Width, this.Height);
       }
 
       private void ApplicationGrid_ContextClick (object sender, RoutedEventArgs e)
@@ -60,10 +53,10 @@ namespace COD_Server_Monitor
       {
          MonitoredApp monitoredApp = ((FrameworkElement) sender).DataContext as MonitoredApp;
 
-         monitoredApp.IsRunning = true;
+         StartApplication(monitoredApp);
 
-         //if (!AppMonitor.IsEnabled)
-           // AppMonitor.Start ();
+         if (!AppMonitor.IsEnabled)
+            AppMonitor.Start ();
       }
 
       private void ApplicationGrid_RemoveClick (object sender, RoutedEventArgs e)
@@ -80,7 +73,55 @@ namespace COD_Server_Monitor
 
       private void CheckApplicationStatus (object sender, EventArgs e)
       {
+         foreach(MonitoredApp app in AppCollection)
+         {
+            if(!app.IsRunning || app.ProcessID == 0)
+               continue;
 
+            // Check to see if the process has exited
+            Process process = null;
+            try
+            {
+               process = Process.GetProcessById(app.ProcessID);
+            }
+            catch
+            {
+               app.ProcessID = 0;
+               app.IsRunning = false;
+
+               OutputText.Text += String.Format ("{0} is no longer running\n", app.Name);
+
+               if (app.AutoRestart)
+                  StartApplication(app);
+
+               continue;
+            }
+
+            // Check to see if process is no longer responding
+            process.Refresh();
+            if(!process.Responding || process.MainWindowTitle.Contains("ERROR"))
+            {
+               app.ProcessID = 0;
+               app.IsRunning = false;
+               OutputText.Text += String.Format ("{0} is no longer responding\n", app.Name);
+
+               if(app.AutoRestart)
+               {
+                  process.Kill();
+
+                  StartApplication(app);
+               }
+            }
+         }
+      }
+
+      private void StartApplication (MonitoredApp app)
+      {
+         bool success = app.StartApp();
+
+         OutputText.Text += success ? 
+            String.Format ("{0} started with args: {1}\n", app.Name, app.Arguments) :
+            String.Format ("Unable to start {0}\n", app.Path);
       }
    }
 }
