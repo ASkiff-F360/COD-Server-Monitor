@@ -22,6 +22,9 @@ namespace COD_Server_Monitor
       public String Name {
          get { return name; }
          set {
+            if(name != null && name.Equals(value))
+               return;
+
             name = value;
             OnPropertyChanged("Name");
          }
@@ -36,6 +39,9 @@ namespace COD_Server_Monitor
          get { return path; }
          set
          {
+            if (path != null && path.Equals (value))
+               return;
+
             path = value;
             OnPropertyChanged ("Path");
          }
@@ -50,6 +56,9 @@ namespace COD_Server_Monitor
          get { return args; }
          set
          {
+            if (args != null && args.Equals (value))
+               return;
+
             args = value;
             OnPropertyChanged ("Arguments");
          }
@@ -64,6 +73,9 @@ namespace COD_Server_Monitor
          get { return restart; }
          set
          {
+            if(restart == value)
+               return;
+
             restart = value;
             OnPropertyChanged ("AutoRestart");
          }
@@ -77,6 +89,9 @@ namespace COD_Server_Monitor
          get { return pid; }
          set
          {
+            if (pid == value)
+               return;
+
             pid = value;
             OnPropertyChanged ("ProcessID");
          }
@@ -90,6 +105,9 @@ namespace COD_Server_Monitor
          get { return running; }
          set
          {
+            if (running == value)
+               return;
+
             running = value;
             OnPropertyChanged ("IsRunning");
          }

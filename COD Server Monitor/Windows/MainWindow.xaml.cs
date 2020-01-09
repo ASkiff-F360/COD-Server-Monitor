@@ -148,5 +148,11 @@ namespace COD_Server_Monitor
       {
          Application.Current.Shutdown ();
       }
+
+      private void NotifyMenu_SwapTheme (object sender, RoutedEventArgs e)
+      {
+         (App.Current as App).ChangeSkin(App.Skin == Skin.Dark ? Skin.Light : Skin.Dark);
+         
+      }
    }
 }

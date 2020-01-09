@@ -7,7 +7,7 @@
         xmlns:tb1="http://www.hardcodet.net/taskbar"
         xmlns:controls="clr-namespace:COD_Server_Monitor"
         mc:Ignorable="d"
-        Title="COD Server Monitor" Height="360.381" Width="553.072" Background="#FFBDBCBC" Foreground="Black" Margin="0" Icon="pack://application:,,,/Resources/icon.png" Loaded="Window_Loaded" Closing="Window_Closing" WindowStartupLocation="CenterScreen" StateChanged="Window_StateChanged">
+        Title="COD Server Monitor" Height="360.381" Width="553.072" Margin="0" Icon="pack://application:,,,/Resources/icon.png" Loaded="Window_Loaded" Closing="Window_Closing" WindowStartupLocation="CenterScreen" StateChanged="Window_StateChanged">
 
     <Grid>
         <Grid.RowDefinitions>
@@ -16,21 +16,22 @@
             <RowDefinition Height="40*"/>
         </Grid.RowDefinitions>
 
-        <StackPanel Grid.Row="0" Background="#FFBDBCBC"/>
-        <GridSplitter Grid.Row="1" HorizontalAlignment="Stretch" VerticalAlignment="Center" Background="#FF747474" Height="5"/>
-        <StackPanel Grid.Row="2" Background="#FFBDBCBC"/>
+        <StackPanel Grid.Row="0" Style="{DynamicResource ThemedPanel}"/>
+        <GridSplitter Grid.Row="1" Style="{DynamicResource ThemedGridSplitter}" HorizontalAlignment="Stretch" VerticalAlignment="Center" Height="5"/>
+        <StackPanel Grid.Row="2" Style="{DynamicResource ThemedPanel}"/>
 
         <tb1:TaskbarIcon IconSource="pack://application:,,,/COD Server Monitor;component/Resources/icon.ico">
             <tb1:TaskbarIcon.ContextMenu>
                 <ContextMenu>
                     <MenuItem Name="MinimizeToTray" Header="Minimize To Tray" IsCheckable="True"/>
+                    <MenuItem Header="Swap Theme" Click="NotifyMenu_SwapTheme"/>
                     <MenuItem Header="Show App" Click="NotifyMenu_ShowApp" />
                     <MenuItem Header="Exit App" Click="NotifyMenu_ExitApp"/>
                 </ContextMenu>
             </tb1:TaskbarIcon.ContextMenu>
         </tb1:TaskbarIcon>
 
-        <DataGrid x:Name="ApplicationGrid" Grid.Row="0" Margin="10,10,10,4" AutoGenerateColumns="False" ColumnWidth="*" SelectionUnit="Cell" CanUserAddRows="False" HeadersVisibility="Column">
+        <DataGrid x:Name="ApplicationGrid" Grid.Row="0" Margin="10,10,10,4" AutoGenerateColumns="False" ColumnWidth="*" SelectionUnit="Cell" CanUserAddRows="False" HeadersVisibility="Column" ScrollViewer.HorizontalScrollBarVisibility="Disabled" Style="{DynamicResource ThemedGrid}" CellStyle="{DynamicResource ThemedGridCell}" ColumnHeaderStyle="{DynamicResource ThemedGridHeader}">
             <DataGrid.ContextMenu>
                 <ContextMenu>
                     <MenuItem Header="Add Application" Click="ApplicationGrid_ContextClick">
@@ -78,7 +79,7 @@
                 <DataGridTemplateColumn Header="Start" Width="*">
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>
-                            <Button Click="ApplicationGrid_StartClick"/>
+                            <Button Click="ApplicationGrid_StartClick" Style="{DynamicResource ThemedButton}"/>
                         </DataTemplate>
                     </DataGridTemplateColumn.CellTemplate>
                 </DataGridTemplateColumn>
@@ -86,15 +87,15 @@
                 <DataGridTemplateColumn Header="Remove" Width="*">
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>
-                            <Button Click="ApplicationGrid_RemoveClick"/>
+                            <Button Click="ApplicationGrid_RemoveClick" Style="{DynamicResource ThemedButton}"/>
                         </DataTemplate>
                     </DataGridTemplateColumn.CellTemplate>
                 </DataGridTemplateColumn>
             </DataGrid.Columns>
         </DataGrid>
 
-        <TextBlock x:Name="OutputText" Grid.Row="2" Background="#FFF0F0F0" Margin="10,4,10,10" Padding="4,0" ScrollViewer.CanContentScroll="True">
-            <TextBlock.ContextMenu>
+        <TextBox x:Name="OutputText" Style="{DynamicResource ThemedInput}" Grid.Row="2" Margin="10,4,10,10" Padding="4,0" ScrollViewer.CanContentScroll="True" IsReadOnly="True">
+            <TextBox.ContextMenu>
                 <ContextMenu>
                     <MenuItem Header="Clear Output" Click="OutputText_ClearOutput">
                         <MenuItem.Icon>
@@ -102,7 +103,7 @@
                         </MenuItem.Icon>
                     </MenuItem>
                 </ContextMenu>
-            </TextBlock.ContextMenu>
-        </TextBlock>
+            </TextBox.ContextMenu>
+        </TextBox>
     </Grid>
 </Window>

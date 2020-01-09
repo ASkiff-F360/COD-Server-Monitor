@@ -14,7 +14,7 @@ namespace COD_Server_Monitor
       public Boolean IsOn
       {
          get { return (Boolean)GetValue(IsOnProperty); }
-         set { SetValue(IsOnProperty, value); BindingGroup.SetValue(IsOnProperty, value); }
+         set { SetValue(IsOnProperty, value); }
       }
 
       public CornerRadius CornerRadius

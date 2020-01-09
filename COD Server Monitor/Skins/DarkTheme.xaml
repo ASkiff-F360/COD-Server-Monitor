@@ -1,0 +1,41 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:local="clr-namespace:COD_Server_Monitor">
+
+    <!-- Default Color -->
+    <SolidColorBrush x:Key="DefaultColor" Color="#2D2D30"/>
+
+    <!-- Normal Button -->
+    <SolidColorBrush x:Key="BtnForeground" Color="#F1F1F1"/>
+    <SolidColorBrush x:Key="BtnBackground" Color="#3F3F46"/>
+    <SolidColorBrush x:Key="BtnBorder" Color="#555555"/>
+    <SolidColorBrush x:Key="BtnHoverForeground" Color="#F1F1F1"/>
+    <SolidColorBrush x:Key="BtnHoverBackground" Color="#3F3F46"/>
+    <SolidColorBrush x:Key="BtnHoverBorder" Color="#007ACC"/>
+    <SolidColorBrush x:Key="BtnPressForeground" Color="#F1F1F1"/>
+    <SolidColorBrush x:Key="BtnPressBackground" Color="#007ACC"/>
+    <SolidColorBrush x:Key="BtnPressBorder" Color="#007ACC"/>
+    <SolidColorBrush x:Key="BtnFocusForeground" Color="#F1F1F1"/>
+    <SolidColorBrush x:Key="BtnFocusBackground" Color="#3F3F46"/>
+    <SolidColorBrush x:Key="BtnFocusBorder" Color="#007ACC"/>
+    <SolidColorBrush x:Key="BtnDisabledForeground" Color="#656565"/>
+    <SolidColorBrush x:Key="BtnDisabledBackground" Color="#2D2D30"/>
+    <SolidColorBrush x:Key="BtnDisabledBorder" Color="#3F3F46"/>
+    
+    <!-- Input Fields (TextBox, RichTextBox, etc... -->
+    <SolidColorBrush x:Key="InputForeground" Color="#F1F1F1"/>
+    <SolidColorBrush x:Key="InputBackground" Color="#333337"/>
+    <SolidColorBrush x:Key="InputDisabledForeground" Color="#656565"/>
+    <SolidColorBrush x:Key="InputDisabledBackground" Color="#252526"/>
+    <SolidColorBrush x:Key="InputBorder" Color="#434346"/>
+    <SolidColorBrush x:Key="InputBorderBackground" Color="#434346"/>
+    
+    <!-- Data Grid -->
+    <SolidColorBrush x:Key="DataGridForeground" Color="#F1F1F1"/>
+    <SolidColorBrush x:Key="DataGridBackground" Color="#252526"/>
+    <SolidColorBrush x:Key="DataGridSelectForeground" Color="#F1F1F1"/>
+    <SolidColorBrush x:Key="DataGridSelectBackground" Color="#2D2D30"/>
+    <SolidColorBrush x:Key="DataGridFocusForeground" Color="#FFFFFF"/>
+    <SolidColorBrush x:Key="DataGridFocusBackground" Color="#3399FF"/>
+    <SolidColorBrush x:Key="DataGridDivider" Color="#2D2D30"/>
+</ResourceDictionary>
