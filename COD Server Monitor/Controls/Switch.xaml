@@ -1,0 +1,59 @@
+﻿<UserControl x:Class="COD_Server_Monitor.Switch"
+             x:Name="SwitchElement"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:COD_Server_Monitor"
+             mc:Ignorable="d" Foreground="{x:Null}">
+
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="2*"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="2*"/>
+        </Grid.ColumnDefinitions>
+
+        <Border x:Name="BackgroundBorder" BorderThickness="1" Grid.ColumnSpan="3" CornerRadius="5,5,5,5">
+            <Border.Style>
+                <Style TargetType="{x:Type Border}">
+                    <Setter Property="Background" Value="#FFB4B4B4"/>
+                    <Style.Triggers>
+                        <DataTrigger Binding="{Binding ElementName=SwitchElement, Path=IsOn, Mode=TwoWay}" Value="True">
+                            <Setter Property="Background" Value="#FF07F356"/>
+                        </DataTrigger>
+                    </Style.Triggers>
+                </Style>
+            </Border.Style>
+        </Border>
+
+        <Ellipse x:Name="SelectorEllipse" Fill="#FFFFFFFF" Grid.Column="0" Grid.ColumnSpan="2" MouseDown="SelectorEllipse_MouseDown" Margin="2,2,2,2">
+            <Ellipse.Style>
+                <Style TargetType="{x:Type Ellipse}">
+                    <Style.Triggers>
+                        <DataTrigger Binding="{Binding ElementName=SwitchElement, Path=IsOn, Mode=TwoWay}" Value="True">
+                            <DataTrigger.EnterActions>
+                                <BeginStoryboard>
+                                    <Storyboard>
+                                        <DoubleAnimation Storyboard.TargetProperty="Opacity" To="0.0" Duration="0:0:0.25" BeginTime="0:0:0"/>
+                                        <Int32Animation Storyboard.TargetProperty="(Grid.Column)" To="1" Duration="0:0:0.0" BeginTime="0:0:0.25"/>
+                                        <DoubleAnimation Storyboard.TargetProperty="Opacity" To="1.0" Duration="0:0:0.25" BeginTime="0:0:0.25"/>
+                                    </Storyboard>
+                                </BeginStoryboard>
+                            </DataTrigger.EnterActions>
+                            <DataTrigger.ExitActions>
+                                <BeginStoryboard>
+                                    <Storyboard>
+                                        <DoubleAnimation Storyboard.TargetProperty="Opacity" To="0.0" Duration="0:0:0.25" BeginTime="0:0:0"/>
+                                        <Int32Animation Storyboard.TargetProperty="(Grid.Column)" To="0" Duration="0:0:0.0" BeginTime="0:0:0.25"/>
+                                        <DoubleAnimation Storyboard.TargetProperty="Opacity" To="1.0" Duration="0:0:0.25" BeginTime="0:0:0.25"/>
+                                    </Storyboard>
+                                </BeginStoryboard>
+                            </DataTrigger.ExitActions>
+                        </DataTrigger>
+                    </Style.Triggers>
+                </Style>
+            </Ellipse.Style>
+        </Ellipse>
+    </Grid>
+</UserControl>

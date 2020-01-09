@@ -5,6 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:COD_Server_Monitor"
         xmlns:tb1="http://www.hardcodet.net/taskbar"
+        xmlns:controls="clr-namespace:COD_Server_Monitor"
         mc:Ignorable="d"
         Title="COD Server Monitor" Height="360.381" Width="553.072" Background="#FFBDBCBC" Foreground="Black" Margin="0" Icon="pack://application:,,,/Resources/icon.png" Loaded="Window_Loaded" Closing="Window_Closing" WindowStartupLocation="CenterScreen" StateChanged="Window_StateChanged">
 
@@ -56,10 +57,24 @@
                     </DataGridTextColumn.ElementStyle>
                 </DataGridTextColumn>
 
-                <DataGridTextColumn Header="Arguments" Binding="{Binding Arguments, Mode=TwoWay}" Width="4*"/>
+                <DataGridTextColumn Header="Arguments" Binding="{Binding Arguments, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Width="4*"/>
 
-                <DataGridCheckBoxColumn Header="Auto Restart" Binding="{Binding AutoRestart, Mode=TwoWay}" Width="1.5*"/>
-                
+                <DataGridTemplateColumn Header="Auto Restart" Width="1*">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <Grid Width="Auto" Height="Auto" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="1*"/>
+                                    <ColumnDefinition Width="2*"/>
+                                    <ColumnDefinition Width="1*"/>
+                                </Grid.ColumnDefinitions>
+
+                                <controls:Switch Grid.Column="1" IsOn="{Binding AutoRestart, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+                            </Grid>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+
                 <DataGridTemplateColumn Header="Start" Width="*">
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>
@@ -67,7 +82,7 @@
                         </DataTemplate>
                     </DataGridTemplateColumn.CellTemplate>
                 </DataGridTemplateColumn>
-                
+
                 <DataGridTemplateColumn Header="Remove" Width="*">
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>
@@ -78,7 +93,7 @@
             </DataGrid.Columns>
         </DataGrid>
 
-        <TextBlock x:Name="OutputText" Grid.Row="2" Background="#FFF0F0F0" Margin="10,4,10,10" Text="" Padding="4,0" ScrollViewer.CanContentScroll="True">
+        <TextBlock x:Name="OutputText" Grid.Row="2" Background="#FFF0F0F0" Margin="10,4,10,10" Padding="4,0" ScrollViewer.CanContentScroll="True">
             <TextBlock.ContextMenu>
                 <ContextMenu>
                     <MenuItem Header="Clear Output" Click="OutputText_ClearOutput">

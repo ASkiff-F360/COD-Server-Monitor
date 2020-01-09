@@ -4,8 +4,6 @@ using System.Diagnostics;
 using System.Windows;
 using System.Windows.Threading;
 
-using Hardcodet.Wpf.TaskbarNotification;
-
 namespace COD_Server_Monitor
 {
    public partial class MainWindow : Window
@@ -80,7 +78,9 @@ namespace COD_Server_Monitor
       {
          MonitoredApp monitoredApp = ((FrameworkElement) sender).DataContext as MonitoredApp;
 
-         AppCollection.Remove (monitoredApp);
+         Console.WriteLine("{0} {1} {2}", monitoredApp.Name, monitoredApp.Arguments, monitoredApp.AutoRestart);
+
+         //AppCollection.Remove (monitoredApp);
       }
 
       private void OutputText_ClearOutput (object sender, RoutedEventArgs e)
