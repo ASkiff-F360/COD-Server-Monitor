@@ -17,17 +17,30 @@
         <Border x:Name="BackgroundBorder" BorderThickness="1" Grid.ColumnSpan="3" CornerRadius="5,5,5,5">
             <Border.Style>
                 <Style TargetType="{x:Type Border}">
-                    <Setter Property="Background" Value="#FFB4B4B4"/>
+                    <Setter Property="Background" Value="#FFE83636"/>
                     <Style.Triggers>
                         <DataTrigger Binding="{Binding ElementName=SwitchElement, Path=IsOn, Mode=TwoWay}" Value="True">
-                            <Setter Property="Background" Value="#FF07F356"/>
+                            <DataTrigger.EnterActions>
+                                <BeginStoryboard>
+                                    <Storyboard>
+                                        <ColorAnimation Storyboard.TargetProperty="(Background).(SolidColorBrush.Color)" To="#FF1ACE4A" Duration="0:0:0.25" BeginTime="0:0:0"/>
+                                    </Storyboard>
+                                </BeginStoryboard>
+                            </DataTrigger.EnterActions>
+                            <DataTrigger.ExitActions>
+                                <BeginStoryboard>
+                                    <Storyboard>
+                                        <ColorAnimation Storyboard.TargetProperty="(Background).(SolidColorBrush.Color)" To="#FFE83636" Duration="0:0:0.25" BeginTime="0:0:0"/>
+                                    </Storyboard>
+                                </BeginStoryboard>
+                            </DataTrigger.ExitActions>
                         </DataTrigger>
                     </Style.Triggers>
                 </Style>
             </Border.Style>
         </Border>
 
-        <Ellipse x:Name="SelectorEllipse" Fill="#FFFFFFFF" Grid.Column="0" Grid.ColumnSpan="2" MouseDown="SelectorEllipse_MouseDown" Margin="2,2,2,2">
+        <Ellipse x:Name="SelectorEllipse" Fill="#FFDEDEDE" Grid.Column="0" Grid.ColumnSpan="2" MouseDown="SelectorEllipse_MouseDown" Margin="2,2,2,2">
             <Ellipse.Style>
                 <Style TargetType="{x:Type Ellipse}">
                     <Style.Triggers>

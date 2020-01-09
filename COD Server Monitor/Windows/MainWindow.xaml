@@ -64,9 +64,9 @@
                         <DataTemplate>
                             <Grid Width="Auto" Height="Auto" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
                                 <Grid.ColumnDefinitions>
-                                    <ColumnDefinition Width="1*"/>
+                                    <ColumnDefinition Width="1.25*"/>
                                     <ColumnDefinition Width="2*"/>
-                                    <ColumnDefinition Width="1*"/>
+                                    <ColumnDefinition Width="1.25*"/>
                                 </Grid.ColumnDefinitions>
 
                                 <controls:Switch Grid.Column="1" IsOn="{Binding AutoRestart, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
