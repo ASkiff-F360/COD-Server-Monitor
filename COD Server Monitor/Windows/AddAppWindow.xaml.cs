@@ -18,6 +18,13 @@ namespace COD_Server_Monitor
          AddApplication = false;
       }
 
+      private void Window_Loaded (object sender, RoutedEventArgs e)
+      {
+         Window mainWindow = Application.Current.MainWindow;
+         this.Left = mainWindow.Left + (mainWindow.Width - this.ActualWidth) / 2;
+         this.Top = mainWindow.Top + (mainWindow.Height - this.ActualHeight) / 2;
+      }
+
       private void AddApplication_BrowseClick (object sender, RoutedEventArgs e)
       {
          OpenFileDialog dialog = new OpenFileDialog ();

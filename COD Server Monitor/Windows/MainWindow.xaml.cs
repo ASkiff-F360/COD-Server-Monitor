@@ -8,8 +8,8 @@ namespace COD_Server_Monitor
 {
    public partial class MainWindow : Window
    {
-      private ObservableCollection<MonitoredApp> AppCollection;
       private DispatcherTimer AppMonitor;
+      private ObservableCollection<MonitoredApp> AppCollection;
 
       public MainWindow ()
       {
@@ -51,39 +51,6 @@ namespace COD_Server_Monitor
             this.ShowInTaskbar = true;
             this.Activate ();
          }
-      }
-
-      private void ApplicationGrid_ContextClick (object sender, RoutedEventArgs e)
-      {
-         AddAppWindow addApp = new AddAppWindow ();
-         addApp.ShowDialog ();
-
-         if (addApp.AddApplication)
-         {
-            AppCollection.Add (new MonitoredApp (addApp.FilePath, addApp.Arguments, addApp.AutoRestart));
-         }
-      }
-
-      private void ApplicationGrid_StartClick (object sender, RoutedEventArgs e)
-      {
-         MonitoredApp monitoredApp = ((FrameworkElement) sender).DataContext as MonitoredApp;
-
-         StartApplication (monitoredApp);
-
-         if (!AppMonitor.IsEnabled)
-            AppMonitor.Start ();
-      }
-
-      private void ApplicationGrid_RemoveClick (object sender, RoutedEventArgs e)
-      {
-         MonitoredApp monitoredApp = ((FrameworkElement) sender).DataContext as MonitoredApp;
-
-         AppCollection.Remove (monitoredApp);
-      }
-
-      private void OutputText_ClearOutput (object sender, RoutedEventArgs e)
-      {
-         this.OutputText.Text = String.Empty;
       }
 
       private void CheckApplicationStatus (object sender, EventArgs e)
@@ -137,22 +104,6 @@ namespace COD_Server_Monitor
          OutputText.Text += success ?
             String.Format ("{0} started with args: {1}\n", app.Name, app.Arguments) :
             String.Format ("Unable to start {0}\n", app.Path);
-      }
-
-      private void NotifyMenu_ShowApp (object sender, RoutedEventArgs e)
-      {
-         this.WindowState = WindowState.Normal;
-      }
-
-      private void NotifyMenu_ExitApp (object sender, RoutedEventArgs e)
-      {
-         Application.Current.Shutdown ();
-      }
-
-      private void NotifyMenu_SwapTheme (object sender, RoutedEventArgs e)
-      {
-         (App.Current as App).ChangeSkin(App.Skin == Skin.Dark ? Skin.Light : Skin.Dark);
-         
       }
    }
 }

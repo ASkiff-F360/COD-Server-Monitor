@@ -5,7 +5,6 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:COD_Server_Monitor"
         xmlns:tb1="http://www.hardcodet.net/taskbar"
-        xmlns:controls="clr-namespace:COD_Server_Monitor"
         mc:Ignorable="d"
         Title="COD Server Monitor" Height="360.381" Width="553.072" Margin="0" Icon="pack://application:,,,/Resources/icon.png" Loaded="Window_Loaded" Closing="Window_Closing" WindowStartupLocation="CenterScreen" StateChanged="Window_StateChanged">
 
@@ -77,7 +76,7 @@
                                     <ColumnDefinition Width="1.25*"/>
                                 </Grid.ColumnDefinitions>
 
-                                <controls:Switch Grid.Column="1" IsOn="{Binding AutoRestart, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+                                <local:Switch Grid.Column="1" IsOn="{Binding AutoRestart, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
                             </Grid>
                         </DataTemplate>
                     </DataGridTemplateColumn.CellTemplate>
