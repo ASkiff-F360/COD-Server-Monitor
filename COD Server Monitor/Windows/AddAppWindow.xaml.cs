@@ -7,6 +7,7 @@ namespace COD_Server_Monitor
    public partial class AddAppWindow : Window
    {
       public String FilePath;
+      public String DisplayName;
       public String Arguments;
       public Boolean AutoRestart;
       public Boolean AddApplication;
@@ -40,6 +41,7 @@ namespace COD_Server_Monitor
       private void AddApplication_AddClick (object sender, RoutedEventArgs e)
       {
          this.Arguments = this.ArgumentsTextBox.Text;
+         this.DisplayName = this.DisplayNameTextBox.Text;
          this.AutoRestart = this.AutoRestartSwitch.IsOn == true;
 
          if (this.Arguments.Equals ("Arguments"))

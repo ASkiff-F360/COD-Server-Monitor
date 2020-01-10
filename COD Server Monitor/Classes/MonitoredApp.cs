@@ -130,9 +130,10 @@ namespace COD_Server_Monitor
          }
       }
 
-      public MonitoredApp (String filePath, String arguments = "", bool autoRestart = false)
+      public MonitoredApp (String filePath, String displayName = "", String arguments = "", bool autoRestart = false)
       {
          this.Name = System.IO.Path.GetFileName (filePath);
+         this.DisplayName = displayName;
          this.Path = filePath;
          this.Arguments = arguments;
          this.AutoRestart = autoRestart;

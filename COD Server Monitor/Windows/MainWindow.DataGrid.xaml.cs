@@ -11,7 +11,7 @@ namespace COD_Server_Monitor
 
          if (addApp.AddApplication)
          {
-            AppCollection.Add (new MonitoredApp (addApp.FilePath, addApp.Arguments, addApp.AutoRestart));
+            AppCollection.Add (new MonitoredApp (addApp.FilePath, addApp.DisplayName, addApp.Arguments, addApp.AutoRestart));
          }
       }
 

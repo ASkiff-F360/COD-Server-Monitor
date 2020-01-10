@@ -42,7 +42,7 @@ namespace COD_Server_Monitor
                app.ProcessID = 0;
                app.IsRunning = false;
 
-               OutputText.Text += String.Format ("{0}[{1}] is no longer running\n", app.DisplayName, app.Name);
+               OutputText.Text += String.Format ("{0} [{1}] is no longer running\n", app.DisplayName, app.Name);
 
                if (app.AutoRestart)
                   StartApplication (app);
@@ -56,7 +56,7 @@ namespace COD_Server_Monitor
             {
                app.ProcessID = 0;
                app.IsRunning = false;
-               OutputText.Text += String.Format ("{0}[{1}] is no longer responding\n", app.DisplayName, app.Name);
+               OutputText.Text += String.Format ("{0} [{1}] is no longer responding\n", app.DisplayName, app.Name);
 
                if (app.AutoRestart)
                {
@@ -73,8 +73,8 @@ namespace COD_Server_Monitor
          bool success = app.StartApp ();
 
          OutputText.Text += success ?
-            String.Format ("{0}[{1}] started with args: {2}\n", app.DisplayName, app.Name, app.Arguments) :
-            String.Format ("Unable to start {0}[{1}]\n", app.Name, app.Path);
+            String.Format ("{0} [{1}] started with args: {2}\n", app.DisplayName, app.Name, app.Arguments) :
+            String.Format ("Unable to start {0} [{1}]\n", app.DisplayName, app.Path);
       }
    }
 }
