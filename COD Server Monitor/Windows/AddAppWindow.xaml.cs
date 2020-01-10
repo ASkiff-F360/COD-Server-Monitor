@@ -33,7 +33,7 @@ namespace COD_Server_Monitor
       private void AddApplication_AddClick (object sender, RoutedEventArgs e)
       {
          this.Arguments = this.ArgumentsTextBox.Text;
-         this.AutoRestart = this.AutoRestartCheckBox.IsChecked == true;
+         this.AutoRestart = this.AutoRestartSwitch.IsOn == true;
 
          if (this.Arguments.Equals ("Arguments"))
             this.Arguments = String.Empty;

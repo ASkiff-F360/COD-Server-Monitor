@@ -7,7 +7,7 @@
              xmlns:local="clr-namespace:COD_Server_Monitor"
              mc:Ignorable="d" Foreground="{x:Null}">
 
-    <Grid>
+    <Grid MouseDown="SelectorEllipse_MouseDown">
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="2*"/>
             <ColumnDefinition Width="*"/>
@@ -27,7 +27,7 @@
             </Border.Style>
         </Border>
 
-        <Ellipse x:Name="SelectorEllipse" Fill="#FFDEDEDE" Grid.ColumnSpan="2" MouseDown="SelectorEllipse_MouseDown" Margin="2,2,2,2">
+        <Ellipse x:Name="SelectorEllipse" Fill="#FFDEDEDE" Grid.ColumnSpan="2" Margin="2,2,2,2">
             <Ellipse.Style>
                 <Style x:Name="SwitchEllipseStyle" TargetType="{x:Type Ellipse}">
                     <Setter Property="Grid.Column" Value="0"/>

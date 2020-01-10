@@ -5,18 +5,19 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:COD_Server_Monitor"
         mc:Ignorable="d"
-        Title="Add Application" Height="190" Width="350" Background="#FFBDBCBC" MinHeight="190" MaxHeight="190" Icon="pack://application:,,,/Resources/icon.png">
+        Title="Add Application" Height="190" Width="350" Background="{DynamicResource DefaultColor}" MinHeight="190" MaxHeight="190" Icon="pack://application:,,,/Resources/icon.png">
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="*"/>
             <ColumnDefinition Width="*"/>
         </Grid.ColumnDefinitions>
-        
-        <Button Content="Browse for Application" Margin="10,10,10,0" Grid.ColumnSpan="2" VerticalAlignment="Top" Height="30" Click="AddApplication_BrowseClick"/>
-        <TextBox Name="FilePathTextBox" Height="24" Padding="3" Margin="10,45,10,0" Grid.ColumnSpan="2" TextWrapping="Wrap" Text="FilePath" VerticalAlignment="Top" RenderTransformOrigin="0.497,0.169" IsReadOnly="True"/>
-        <TextBox Name="ArgumentsTextBox" Height="24" Padding="3" Margin="10,72,10,0" Grid.ColumnSpan="2" TextWrapping="Wrap" Text="Arguments" VerticalAlignment="Top" RenderTransformOrigin="0.497,0.169" GotFocus="AddApplication_ArgumentsEnterFocus" LostFocus="AddApplication_ArgumentsLeaveFocus"/>
-        <CheckBox Name="AutoRestartCheckBox" Content="Auto Restart" Grid.ColumnSpan="2" HorizontalAlignment="Left" Margin="10,100,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.157,0.745"/>
-        <Button Name="AddButton" IsEnabled ="False" Content="Add" Margin="10,125,10,4" VerticalAlignment="Top" Grid.Column="0" Click="AddApplication_AddClick"/>
-        <Button Content="Cancel" Margin="10,125,10,4" VerticalAlignment="Top" Grid.Column="1" Click="AddApplication_CancelClick"/>
+
+        <Button Content="Browse for Application" Margin="10,10,10,0" Grid.ColumnSpan="2" VerticalAlignment="Top" Height="30" Click="AddApplication_BrowseClick" Style="{DynamicResource ThemedButton}"/>
+        <TextBox Name="FilePathTextBox" Height="24" Padding="3" Margin="10,45,10,0" Grid.ColumnSpan="2" TextWrapping="Wrap" Text="FilePath" VerticalAlignment="Top" RenderTransformOrigin="0.497,0.169" IsReadOnly="True" Style="{DynamicResource ThemedInput}"/>
+        <TextBox Name="ArgumentsTextBox" Height="24" Padding="3" Margin="10,72,10,0" Grid.ColumnSpan="2" TextWrapping="Wrap" Text="Arguments" VerticalAlignment="Top" RenderTransformOrigin="0.497,0.169" GotFocus="AddApplication_ArgumentsEnterFocus" LostFocus="AddApplication_ArgumentsLeaveFocus" Style="{DynamicResource ThemedInput}"/>
+        <local:Switch x:Name="AutoRestartSwitch" Width="22" Height="14" HorizontalAlignment="Left" Margin="10,103,0,0" VerticalAlignment="Top"/>
+        <Label Content="Auto Restart" HorizontalAlignment="Left" Margin="37,96,0,0" VerticalAlignment="Top" Height="29" Foreground="{DynamicResource InputForeground}"/>
+        <Button Name="AddButton" IsEnabled ="False" Content="Add" Margin="10,125,10,4" VerticalAlignment="Top" Grid.Column="0" Click="AddApplication_AddClick" Style="{DynamicResource ThemedButton}"/>
+        <Button Content="Cancel" Margin="10,125,10,4" VerticalAlignment="Top" Grid.Column="1" Click="AddApplication_CancelClick" Style="{DynamicResource ThemedButton}"/>
     </Grid>
 </Window>

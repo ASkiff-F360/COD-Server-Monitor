@@ -7,23 +7,18 @@
         <Setter Property="Background" Value="{DynamicResource DefaultColor}"/>
     </Style>
 
-    <!-- GridSplitter Style -->
-    <Style TargetType="GridSplitter" x:Key="ThemedGridSplitter">
-        <Setter Property="Background" Value="{DynamicResource DefaultColor}"/>
-    </Style>
-
     <!-- Button Style -->
     <Style TargetType="Button" x:Key="ThemedButton">
         <Setter Property="Foreground" Value="{DynamicResource BtnForeground}"/>
         <Setter Property="Background" Value="{DynamicResource BtnBackground}"/>
         <Setter Property="BorderBrush" Value="{DynamicResource BtnBorder}"/>
-        <Setter Property="BorderThickness" Value="2"/>
+        <Setter Property="BorderThickness" Value="1"/>
 
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type Button}">
                     <Border x:Name="ControlColors" Background="{TemplateBinding Background}" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}">
-                        <ContentPresenter x:Name="ControlPresenter" ContentTemplate="{TemplateBinding ContentTemplate}" Content="{TemplateBinding Content}" ContentStringFormat="{TemplateBinding ContentStringFormat}" Margin="{TemplateBinding Padding}" HorizontalAlignment="{TemplateBinding HorizontalAlignment}" VerticalAlignment="{TemplateBinding VerticalAlignment}"/>
+                        <ContentPresenter x:Name="ControlPresenter" ContentTemplate="{TemplateBinding ContentTemplate}" Content="{TemplateBinding Content}" ContentStringFormat="{TemplateBinding ContentStringFormat}" Margin="{TemplateBinding Padding}" HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" VerticalAlignment="{TemplateBinding VerticalContentAlignment}"/>
                     </Border>
                     <ControlTemplate.Triggers>
                         <Trigger Property="IsMouseOver" Value="True">
@@ -51,12 +46,20 @@
             </Setter.Value>
         </Setter>
     </Style>
+    
+    <!-- Check Box Style -->
+    <Style TargetType="CheckBox" x:Key="ThemedCheckBox">
+        <Setter Property="Foreground" Value="{DynamicResource CheckBoxForeground}"/>
+        <Setter Property="Background" Value="{DynamicResource CheckBoxBackground}"/>
+        <Setter Property="BorderBrush" Value="{DynamicResource CheckBoxBorder}"/>
+    </Style>
 
     <!-- TextBox Style -->
     <Style TargetType="TextBox" x:Key="ThemedInput">
         <Setter Property="Foreground" Value="{DynamicResource InputForeground}"/>
         <Setter Property="Background" Value="{DynamicResource InputBackground}"/>
         <Setter Property="BorderBrush" Value="{DynamicResource InputBorder}"/>
+        <Setter Property="Padding" Value="4,2,4,2"/>
 
         <Style.Triggers>
             <Trigger Property="IsEnabled" Value="False">
@@ -65,6 +68,11 @@
                 <Setter Property="BorderBrush" Value="{DynamicResource InputDisabledBorder}"/>
             </Trigger>
         </Style.Triggers>
+    </Style>
+
+    <!-- Grid Splitter Style -->
+    <Style TargetType="GridSplitter" x:Key="ThemedGridSplitter">
+        <Setter Property="Background" Value="{DynamicResource DefaultColor}"/>
     </Style>
 
     <!-- Data Grid Style -->
@@ -89,6 +97,20 @@
         <Setter Property="Foreground" Value="{DynamicResource InputForeground}"/>
         <Setter Property="Background" Value="{DynamicResource InputBackground}"/>
         <Setter Property="BorderBrush" Value="{DynamicResource InputBorder}"/>
+        <Setter Property="Padding" Value="4,2,4,2"/>
+    </Style>
+    
+    <!-- Context Menu Style -->
+    <Style TargetType="ContextMenu" x:Key="ThemedContextMenu">
+        <Setter Property="Background" Value="{DynamicResource ContextMenuBackground}"/>
+        <Setter Property="BorderBrush" Value="{DynamicResource ContextMenuBorder}"/>
+    </Style>
+    
+    <!-- Menu Item Style -->
+    <Style TargetType="MenuItem" x:Key="ThemedMenuItem">
+        <Setter Property="Foreground" Value="{DynamicResource MenuItemForeground}"/>
+        <Setter Property="Background" Value="{DynamicResource MenuItemBackground}"/>
+        <Setter Property="BorderBrush" Value="{DynamicResource MenuItemBorder}"/>
     </Style>
 
 </ResourceDictionary>

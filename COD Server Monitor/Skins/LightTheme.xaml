@@ -22,6 +22,23 @@
     <SolidColorBrush x:Key="BtnDisabledBackground" Color="#F5F5F5"/>
     <SolidColorBrush x:Key="BtnDisabledBorder" Color="#CCCEDB"/>
 
+    <!-- Check Box -->
+    <SolidColorBrush x:Key="CheckBoxForeground" Color="#1E1E1E"/>
+    <SolidColorBrush x:Key="CheckBoxBackground" Color="#FEFEFE"/>
+    <SolidColorBrush x:Key="CheckBoxBorder" Color="#717171"/>
+    <SolidColorBrush x:Key="CheckBoxHoverForeground" Color="#1E1E1E"/>
+    <SolidColorBrush x:Key="CheckBoxHoverBackground" Color="#F3F9FF"/>
+    <SolidColorBrush x:Key="CheckBoxHoverBorder" Color="#3399FF"/>
+    <SolidColorBrush x:Key="CheckBoxPressForeground" Color="#1E1E1E"/>
+    <SolidColorBrush x:Key="CheckBoxPressBackground" Color="#007ACC"/>
+    <SolidColorBrush x:Key="CheckBoxPressBorder" Color="#007ACC"/>
+    <SolidColorBrush x:Key="CheckBoxFocusForeground" Color="#1E1E1E"/>
+    <SolidColorBrush x:Key="CheckBoxFocusBackground" Color="#FDF4BF"/>
+    <SolidColorBrush x:Key="CheckBoxFocusBorder" Color="#3399FF"/>
+    <SolidColorBrush x:Key="CheckBoxDisabledForeground" Color="#A2A4A5"/>
+    <SolidColorBrush x:Key="CheckBoxDisabledBackground" Color="#F6F6F6"/>
+    <SolidColorBrush x:Key="CheckBoxDisabledBorder" Color="#C6C6C6"/>
+
     <!-- Input Fields (TextBox, RichTextBox, etc...) -->
     <SolidColorBrush x:Key="InputForeground" Color="#1E1E1E"/>
     <SolidColorBrush x:Key="InputBackground" Color="#FFFFFF"/>
@@ -38,4 +55,13 @@
     <SolidColorBrush x:Key="DataGridFocusForeground" Color="#FFFFFF"/>
     <SolidColorBrush x:Key="DataGridFocusBackground" Color="#3399FF"/>
     <SolidColorBrush x:Key="DataGridDivider" Color="#EEEEF2"/>
+
+    <!-- Context Menu -->
+    <SolidColorBrush x:Key="ContextMenuBackground" Color="#FFFFFF"/>
+    <SolidColorBrush x:Key="ContextMenuBorder" Color="#CCCEDB"/>
+
+    <!-- Context Menu Items -->
+    <SolidColorBrush x:Key="MenuItemForeground" Color="#1E1E1E"/>
+    <SolidColorBrush x:Key="MenuItemBackground" Color="#ECECF0"/>
+    <SolidColorBrush x:Key="MenuItemBorder" Color="#CCCEDB"/>
 </ResourceDictionary>

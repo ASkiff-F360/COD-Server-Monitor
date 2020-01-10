@@ -22,6 +22,23 @@
     <SolidColorBrush x:Key="BtnDisabledBackground" Color="#2D2D30"/>
     <SolidColorBrush x:Key="BtnDisabledBorder" Color="#3F3F46"/>
     
+    <!-- Check Box -->
+    <SolidColorBrush x:Key="CheckBoxForeground" Color="#F1F1F1"/>
+    <SolidColorBrush x:Key="CheckBoxBackground" Color="#252526"/>
+    <SolidColorBrush x:Key="CheckBoxBorder" Color="#999999"/>
+    <SolidColorBrush x:Key="CheckBoxHoverForeground" Color="#F1F1F1"/>
+    <SolidColorBrush x:Key="CheckBoxHoverBackground" Color="#1F1F20"/>
+    <SolidColorBrush x:Key="CheckBoxHoverBorder" Color="#007ACC"/>
+    <SolidColorBrush x:Key="CheckBoxPressForeground" Color="#F1F1F1"/>
+    <SolidColorBrush x:Key="CheckBoxPressBackground" Color="#007ACC"/>
+    <SolidColorBrush x:Key="CheckBoxPressBorder" Color="#007ACC"/>
+    <SolidColorBrush x:Key="CheckBoxFocusForeground" Color="#F1F1F1"/>
+    <SolidColorBrush x:Key="CheckBoxFocusBackground" Color="#1F1F20"/>
+    <SolidColorBrush x:Key="CheckBoxFocusBorder" Color="#007ACC"/>
+    <SolidColorBrush x:Key="CheckBoxDisabledForeground" Color="#656565"/>
+    <SolidColorBrush x:Key="CheckBoxDisabledBackground" Color="#2D2D30"/>
+    <SolidColorBrush x:Key="CheckBoxDisabledBorder" Color="#434346"/>
+
     <!-- Input Fields (TextBox, RichTextBox, etc... -->
     <SolidColorBrush x:Key="InputForeground" Color="#F1F1F1"/>
     <SolidColorBrush x:Key="InputBackground" Color="#333337"/>
@@ -38,4 +55,13 @@
     <SolidColorBrush x:Key="DataGridFocusForeground" Color="#FFFFFF"/>
     <SolidColorBrush x:Key="DataGridFocusBackground" Color="#3399FF"/>
     <SolidColorBrush x:Key="DataGridDivider" Color="#2D2D30"/>
+    
+    <!-- Context Menu -->
+    <SolidColorBrush x:Key="ContextMenuBackground" Color="#252526"/>
+    <SolidColorBrush x:Key="ContextMenuBorder" Color="#434346"/>
+    
+    <!-- Context Menu Items -->
+    <SolidColorBrush x:Key="MenuItemForeground" Color="#F1F1F1"/>
+    <SolidColorBrush x:Key="MenuItemBackground" Color="#333337"/>
+    <SolidColorBrush x:Key="MenuItemBorder" Color="#434346"/>
 </ResourceDictionary>
