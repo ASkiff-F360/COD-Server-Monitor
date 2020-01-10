@@ -4,6 +4,19 @@ namespace COD_Server_Monitor
 {
    public partial class MainWindow : Window
    {
+      private void Window_StateChanged (object sender, EventArgs e)
+      {
+         if (this.WindowState == WindowState.Minimized && this.MinimizeToTray.IsChecked)
+         {
+            this.ShowInTaskbar = false;
+         }
+         else if (this.WindowState == WindowState.Normal)
+         {
+            this.ShowInTaskbar = true;
+            this.Activate ();
+         }
+      }
+
       private void NotifyMenu_ShowApp (object sender, RoutedEventArgs e)
       {
          this.WindowState = WindowState.Normal;

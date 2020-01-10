@@ -10,6 +10,7 @@ namespace COD_Server_Monitor
    {
       private DispatcherTimer AppMonitor;
       private ObservableCollection<MonitoredApp> AppCollection;
+      private UserInterface InterfaceValues;
 
       public MainWindow ()
       {
@@ -20,37 +21,7 @@ namespace COD_Server_Monitor
          AppMonitor.Interval = new TimeSpan (0, 0, 5); //Every 5 seconds
 
          AppCollection = new ObservableCollection<MonitoredApp> ();
-      }
-
-      private void Window_Loaded (object sender, RoutedEventArgs e)
-      {
-         Double width = 0, height = 0;
-         Boolean TrayMinimize = false;
-         UserStorage.Deserialize (ref AppCollection, ref width, ref height, ref TrayMinimize);
-
-         this.Width = width;
-         this.Height = height;
-         this.MinimizeToTray.IsChecked = TrayMinimize;
-
-         ApplicationGrid.ItemsSource = AppCollection;
-      }
-
-      private void Window_Closing (object sender, System.ComponentModel.CancelEventArgs e)
-      {
-         UserStorage.Serialize (AppCollection, this.Width, this.Height, this.MinimizeToTray.IsChecked);
-      }
-
-      private void Window_StateChanged (object sender, EventArgs e)
-      {
-         if (this.WindowState == WindowState.Minimized && this.MinimizeToTray.IsChecked)
-         {
-            this.ShowInTaskbar = false;
-         }
-         else if (this.WindowState == WindowState.Normal)
-         {
-            this.ShowInTaskbar = true;
-            this.Activate ();
-         }
+         InterfaceValues = new UserInterface ();
       }
 
       private void CheckApplicationStatus (object sender, EventArgs e)

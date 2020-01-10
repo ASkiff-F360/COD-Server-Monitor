@@ -14,19 +14,15 @@ namespace COD_Server_Monitor
       private static string SETTINGS_XML = SETTINGS_DIR + "\\settings.xml";
 
       public List<MonitoredApp> applications;
-      public Double Width;
-      public Double Height;
-      public Boolean MinimizeToTray;
+      public UserInterface userInterface;
 
       public UserStorage ()
       {
          applications = new List<MonitoredApp> ();
-         Width = 550;
-         Height = 360;
-         MinimizeToTray = false;
+         userInterface = new UserInterface ();
       }
 
-      public static void Serialize (ObservableCollection<MonitoredApp> appList, Double Width, Double Height, Boolean MinimizeToTray)
+      public static void Serialize (ObservableCollection<MonitoredApp> appList, UserInterface userInterface)
       {
          if (!Directory.Exists (SETTINGS_DIR))
             Directory.CreateDirectory (SETTINGS_DIR);
@@ -35,16 +31,14 @@ namespace COD_Server_Monitor
          foreach (MonitoredApp app in appList)
             storage.applications.Add (app);
 
-         storage.Width = Width;
-         storage.Height = Height;
-         storage.MinimizeToTray = MinimizeToTray;
+         storage.userInterface = userInterface;
 
          var serializer = new DataContractSerializer (typeof (UserStorage));
          using (XmlWriter xml = XmlWriter.Create (SETTINGS_XML))
             serializer.WriteObject (xml, storage);
       }
 
-      public static void Deserialize (ref ObservableCollection<MonitoredApp> appList, ref Double Width, ref Double Height, ref Boolean MinimizeToTray)
+      public static void Deserialize (ref ObservableCollection<MonitoredApp> appList, ref UserInterface userInterface)
       {
          UserStorage storage = null;
 
@@ -52,7 +46,7 @@ namespace COD_Server_Monitor
          {
             var serializer = new DataContractSerializer (typeof (UserStorage));
             using (XmlReader xml = XmlReader.Create (SETTINGS_XML))
-               storage = (UserStorage) serializer.ReadObject (xml);
+               storage = serializer.ReadObject (xml) as UserStorage;
          }
          catch
          {
@@ -62,9 +56,7 @@ namespace COD_Server_Monitor
          foreach (MonitoredApp app in storage.applications)
             appList.Add (app);
 
-         Width = storage.Width;
-         Height = storage.Height;
-         MinimizeToTray = storage.MinimizeToTray;
+         userInterface = storage.userInterface;
       }
    }
 }

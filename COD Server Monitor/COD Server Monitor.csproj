@@ -88,6 +88,7 @@
       <DependentUpon>Switch.xaml</DependentUpon>
     </Compile>
     <Compile Include="Skins\SkinResourceDictionary.cs" />
+    <Compile Include="Classes\UserInterface.cs" />
     <Compile Include="Windows\AddAppWindow.xaml.cs">
       <DependentUpon>AddAppWindow.xaml</DependentUpon>
     </Compile>
@@ -99,15 +100,19 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-	<Compile Include="Windows\MainWindow.DataGrid.xaml.cs">
+    <Compile Include="Windows\MainWindow.DataGrid.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-	<Compile Include="Windows\MainWindow.NotifyMenu.xaml.cs">
+    <Compile Include="Windows\MainWindow.NotifyMenu.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-	<Compile Include="Windows\MainWindow.OutputText.xaml.cs">
+    <Compile Include="Windows\MainWindow.OutputText.xaml.cs">
+      <DependentUpon>MainWindow.xaml</DependentUpon>
+      <SubType>Code</SubType>
+    </Compile>
+	<Compile Include="Windows\MainWindow.Serialization.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>

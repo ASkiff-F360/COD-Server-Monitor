@@ -131,14 +131,14 @@ namespace COD_Server_Monitor
 
       public bool StartApp()
       {
-         Process process = new Process ();
-         process.StartInfo.FileName = this.Path;
-         process.StartInfo.Arguments = this.Arguments;
-
-         process.Start ();
-
          try
          {
+            Process process = new Process ();
+            process.StartInfo.FileName = this.Path;
+            process.StartInfo.Arguments = this.Arguments;
+
+            process.Start ();
+
             this.ProcessID = process.Id;
             this.IsRunning = true;
          }
