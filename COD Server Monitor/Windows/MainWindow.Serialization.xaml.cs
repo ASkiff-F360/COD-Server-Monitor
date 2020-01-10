@@ -7,15 +7,18 @@ namespace COD_Server_Monitor
    {
       private void Window_Loaded (object sender, RoutedEventArgs e)
       {
-         UserStorage.Deserialize (ref AppCollection, ref InterfaceValues);
+         bool validConfiguration = UserStorage.Deserialize (ref AppCollection, ref InterfaceValues);
          
          ApplicationGrid.ItemsSource = AppCollection;
          
-         this.MinimizeToTray.IsChecked = InterfaceValues.MinimizeToTray;
-         this.Width = InterfaceValues.Width;
-         this.Height = InterfaceValues.Height;
+         if(validConfiguration)
+         {
+            this.MinimizeToTray.IsChecked = InterfaceValues.MinimizeToTray;
+            this.Width = InterfaceValues.Width;
+            this.Height = InterfaceValues.Height;
 
-         (App.Current as App).ChangeSkin (InterfaceValues.Skin);
+            (App.Current as App).ChangeSkin (InterfaceValues.Skin);
+         }
       }
 
       private void Window_Closing (object sender, System.ComponentModel.CancelEventArgs e)

@@ -38,8 +38,10 @@ namespace COD_Server_Monitor
             serializer.WriteObject (xml, storage);
       }
 
-      public static void Deserialize (ref ObservableCollection<MonitoredApp> appList, ref UserInterface userInterface)
+      public static bool Deserialize (ref ObservableCollection<MonitoredApp> appList, ref UserInterface userInterface)
       {
+         bool validConfiguration = false;
+
          UserStorage storage = null;
 
          try
@@ -47,6 +49,8 @@ namespace COD_Server_Monitor
             var serializer = new DataContractSerializer (typeof (UserStorage));
             using (XmlReader xml = XmlReader.Create (SETTINGS_XML))
                storage = serializer.ReadObject (xml) as UserStorage;
+
+            validConfiguration = true;
          }
          catch
          {
@@ -57,6 +61,8 @@ namespace COD_Server_Monitor
             appList.Add (app);
 
          userInterface = storage.userInterface;
+
+         return validConfiguration;
       }
    }
 }
