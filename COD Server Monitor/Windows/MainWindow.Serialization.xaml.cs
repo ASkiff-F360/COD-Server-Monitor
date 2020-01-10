@@ -14,6 +14,8 @@ namespace COD_Server_Monitor
          this.MinimizeToTray.IsChecked = InterfaceValues.MinimizeToTray;
          this.Width = InterfaceValues.Width;
          this.Height = InterfaceValues.Height;
+
+         (App.Current as App).ChangeSkin (InterfaceValues.Skin);
       }
 
       private void Window_Closing (object sender, System.ComponentModel.CancelEventArgs e)
@@ -21,6 +23,7 @@ namespace COD_Server_Monitor
          InterfaceValues.MinimizeToTray = this.MinimizeToTray.IsChecked;
          InterfaceValues.Width = this.Width;
          InterfaceValues.Height = this.Height;
+         InterfaceValues.Skin = App.Skin;
 
          UserStorage.Serialize (AppCollection, InterfaceValues);
       }

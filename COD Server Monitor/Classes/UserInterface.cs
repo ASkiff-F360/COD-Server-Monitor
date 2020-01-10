@@ -16,5 +16,8 @@ namespace COD_Server_Monitor
 
       [DataMember]
       public Double Height;
+
+      [DataMember]
+      public Skin Skin;
    }
 }
