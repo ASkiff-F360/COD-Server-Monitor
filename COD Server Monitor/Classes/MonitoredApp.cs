@@ -9,6 +9,7 @@ namespace COD_Server_Monitor
    public class MonitoredApp : INotifyPropertyChanged
    {
       private String name;
+      private String display;
       private String path;
       private String args;
       private Boolean restart;
@@ -18,22 +19,38 @@ namespace COD_Server_Monitor
       /// <summary>
       /// The name of the application being monitored
       /// </summary>
-      [DataMember(Name="FileName")]
-      public String Name {
+      [DataMember (Name = "FileName")]
+      public String Name
+      {
          get { return name; }
-         set {
-            if(name != null && name.Equals(value))
+         set
+         {
+            if (name != null && name.Equals (value))
                return;
 
             name = value;
-            OnPropertyChanged("Name");
+            OnPropertyChanged ("Name");
+         }
+      }
+
+      [DataMember (Name = "DisplayName")]
+      public String DisplayName
+      {
+         get { return display; }
+         set
+         {
+            if (display != null && display.Equals (value))
+               return;
+
+            display = value;
+            OnPropertyChanged ("DisplayName");
          }
       }
 
       /// <summary>
       /// The file path to the executable of the application being monitored
       /// </summary>
-      [DataMember(Name="FilePath")]
+      [DataMember (Name = "FilePath")]
       public String Path
       {
          get { return path; }
@@ -50,7 +67,7 @@ namespace COD_Server_Monitor
       /// <summary>
       /// The command line arguments used when starting the application
       /// </summary>
-      [DataMember(Name="Arguments")]
+      [DataMember (Name = "Arguments")]
       public String Arguments
       {
          get { return args; }
@@ -67,13 +84,13 @@ namespace COD_Server_Monitor
       /// <summary>
       /// Whether or not to restart the application when crashed or closed
       /// </summary>
-      [DataMember(Name="AutoRestart")]
+      [DataMember (Name = "AutoRestart")]
       public Boolean AutoRestart
       {
          get { return restart; }
          set
          {
-            if(restart == value)
+            if (restart == value)
                return;
 
             restart = value;
@@ -113,9 +130,9 @@ namespace COD_Server_Monitor
          }
       }
 
-      public MonitoredApp(String filePath, String arguments = "", bool autoRestart = false)
+      public MonitoredApp (String filePath, String arguments = "", bool autoRestart = false)
       {
-         this.Name = System.IO.Path.GetFileName(filePath);
+         this.Name = System.IO.Path.GetFileName (filePath);
          this.Path = filePath;
          this.Arguments = arguments;
          this.AutoRestart = autoRestart;
@@ -124,12 +141,12 @@ namespace COD_Server_Monitor
       }
 
       public event PropertyChangedEventHandler PropertyChanged;
-      protected void OnPropertyChanged(string PropertyName)
+      protected void OnPropertyChanged (string PropertyName)
       {
          PropertyChanged?.Invoke (this, new PropertyChangedEventArgs (PropertyName));
       }
 
-      public bool StartApp()
+      public bool StartApp ()
       {
          try
          {

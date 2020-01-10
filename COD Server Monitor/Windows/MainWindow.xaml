@@ -58,6 +58,14 @@
                     </DataGridTextColumn.ElementStyle>
                 </DataGridTextColumn>
 
+                <DataGridTextColumn Header="Display Name" Binding="{Binding DisplayName, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Width="1.5*">
+                    <DataGridTextColumn.ElementStyle>
+                        <Style TargetType="{x:Type TextBlock}">
+                            <Setter Property="Padding" Value="4,2,4,2"/>
+                        </Style>
+                    </DataGridTextColumn.ElementStyle>
+                </DataGridTextColumn>
+
                 <DataGridTextColumn Header="Arguments" Binding="{Binding Arguments, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Width="4*">
                     <DataGridTextColumn.ElementStyle>
                         <Style TargetType="{x:Type TextBlock}">
