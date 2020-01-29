@@ -16,14 +16,14 @@ namespace COD_Server_Monitor
          set;
       } = Skin.Dark;
 
-      public void ChangeSkin(Skin skin)
+      public void ChangeSkin (Skin skin)
       {
          Skin = skin;
 
-         foreach(ResourceDictionary dict in Resources.MergedDictionaries)
+         foreach (ResourceDictionary dict in Resources.MergedDictionaries)
          {
-            if(dict is SkinResourceDictionary skinDict)
-               skinDict.UpdateSource();
+            if (dict is SkinResourceDictionary skinDict)
+               skinDict.UpdateSource ();
             else
                dict.Source = dict.Source;
          }

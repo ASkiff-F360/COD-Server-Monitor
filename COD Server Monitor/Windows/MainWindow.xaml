@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:COD_Server_Monitor"
         xmlns:tb1="http://www.hardcodet.net/taskbar"
         mc:Ignorable="d"
-        Title="COD Server Monitor" Height="360.381" Width="553.072" Margin="0" Icon="pack://application:,,,/Resources/icon.png" Loaded="Window_Loaded" Closing="Window_Closing" WindowStartupLocation="CenterScreen" StateChanged="Window_StateChanged">
+        Title="COD Server Monitor" Height="360" Width="650" Margin="0" Icon="pack://application:,,,/Resources/icon.png" Loaded="Window_Loaded" Closing="Window_Closing" WindowStartupLocation="CenterScreen" StateChanged="Window_StateChanged">
 
     <Grid>
         <Grid.RowDefinitions>

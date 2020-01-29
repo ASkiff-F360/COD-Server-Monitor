@@ -8,13 +8,13 @@ namespace COD_Server_Monitor
 {
    public partial class Switch : UserControl
    {
-      public static readonly DependencyProperty IsOnProperty = 
-         DependencyProperty.Register("IsOn", typeof(Boolean), typeof(Switch), new FrameworkPropertyMetadata(false));
+      public static readonly DependencyProperty IsOnProperty =
+         DependencyProperty.Register ("IsOn", typeof (Boolean), typeof (Switch), new FrameworkPropertyMetadata (false));
 
       public Boolean IsOn
       {
-         get { return (Boolean)GetValue(IsOnProperty); }
-         set { SetValue(IsOnProperty, value); }
+         get { return (Boolean) GetValue (IsOnProperty); }
+         set { SetValue (IsOnProperty, value); }
       }
 
       public CornerRadius CornerRadius

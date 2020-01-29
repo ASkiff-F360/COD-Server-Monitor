@@ -18,7 +18,7 @@ namespace COD_Server_Monitor
 
          AppMonitor = new DispatcherTimer ();
          AppMonitor.Tick += new EventHandler (CheckApplicationStatus);
-         AppMonitor.Interval = new TimeSpan (0, 0, 5); //Every 5 seconds
+         AppMonitor.Interval = new TimeSpan (0, 0, 10); //Every 10 seconds
 
          AppCollection = new ObservableCollection<MonitoredApp> ();
          InterfaceValues = new UserInterface ();

@@ -8,10 +8,10 @@ namespace COD_Server_Monitor
       private void Window_Loaded (object sender, RoutedEventArgs e)
       {
          bool validConfiguration = UserStorage.Deserialize (ref AppCollection, ref InterfaceValues);
-         
+
          ApplicationGrid.ItemsSource = AppCollection;
-         
-         if(validConfiguration)
+
+         if (validConfiguration)
          {
             this.MinimizeToTray.IsChecked = InterfaceValues.MinimizeToTray;
             this.Width = InterfaceValues.Width;
