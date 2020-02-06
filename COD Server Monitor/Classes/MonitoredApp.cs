@@ -13,6 +13,8 @@ namespace COD_Server_Monitor
       private String path;
       private String args;
       private Boolean restart;
+      private Boolean inject;
+      private String dllPath;
       private Int32 pid;
       private Boolean running;
 
@@ -99,6 +101,40 @@ namespace COD_Server_Monitor
       }
 
       /// <summary>
+      /// Whether or not there is a DLL that should be injected on startup
+      /// </summary>
+      [DataMember (Name = "AutoInject", EmitDefaultValue = false)]
+      public Boolean AutoInject
+      {
+         get { return inject; }
+         set
+         {
+            if (inject == value)
+               return;
+
+            inject = value;
+            OnPropertyChanged ("AutoInject");
+         }
+      }
+
+      /// <summary>
+      /// Path to the DLL to be auto injected on application startup
+      /// </summary>
+      [DataMember(Name = "DllPath")]
+      public String DllPath
+      {
+         get { return dllPath; }
+         set
+         {
+            if (dllPath != null && dllPath.Equals(value))
+               return;
+
+            dllPath = value;
+            OnPropertyChanged("DllPath");
+         }
+      }
+
+      /// <summary>
       /// The process ID of the application being monitored
       /// </summary>
       public Int32 ProcessID
@@ -130,13 +166,15 @@ namespace COD_Server_Monitor
          }
       }
 
-      public MonitoredApp (String filePath, String displayName = "", String arguments = "", bool autoRestart = false)
+      public MonitoredApp (String filePath, String displayName = "", String arguments = "", bool autoRestart = false, bool autoInject = false, String injectPath = null)
       {
          this.Name = System.IO.Path.GetFileName (filePath);
          this.DisplayName = displayName;
          this.Path = filePath;
          this.Arguments = arguments;
          this.AutoRestart = autoRestart;
+         this.AutoInject = autoInject;
+         this.DllPath = injectPath;
          this.ProcessID = 0;
          this.IsRunning = false;
       }
@@ -156,6 +194,13 @@ namespace COD_Server_Monitor
             process.StartInfo.Arguments = this.Arguments;
 
             process.Start ();
+
+            if(this.AutoInject && this.DllPath != null)
+            {
+               System.Threading.Thread.Sleep(1000);
+
+               Memory.InjectDLL(process, this.DllPath);
+            }
 
             this.ProcessID = process.Id;
             this.IsRunning = true;
