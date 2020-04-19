@@ -194,7 +194,7 @@ namespace COD_Server_Monitor
                 process.StartInfo.FileName = this.Path;
                 process.StartInfo.Arguments = this.Arguments;
 
-                if(this.DllPath != null)
+                if(this.DllPath != null && !this.DllPath.Equals(string.Empty))
                     process.StartInfo.WorkingDirectory = this.DllPath;
 
                 process.Start ();
