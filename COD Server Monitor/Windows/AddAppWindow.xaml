@@ -13,7 +13,7 @@
         </Grid.ColumnDefinitions>
 
         <Button Content="Browse for Application" Margin="10,10,10,0" Grid.ColumnSpan="2" VerticalAlignment="Top" Height="30" Click="AddApplication_BrowseClick" Style="{DynamicResource ThemedButton}"/>
-        <TextBox Name="FilePathTextBox" Height="24" Padding="3" Margin="10,45,10,0" Grid.ColumnSpan="2" TextWrapping="Wrap" Text="FilePath" VerticalAlignment="Top" RenderTransformOrigin="0.497,0.169" IsReadOnly="True" Style="{DynamicResource ThemedInput}"/>
+        <TextBox Name="FilePathTextBox" Height="24" Padding="3" Margin="10,45,10,0" Grid.ColumnSpan="2" TextWrapping="Wrap" Text="FilePath" VerticalAlignment="Top" RenderTransformOrigin="0.497,0.169" Style="{DynamicResource ThemedInput}"/>
         <TextBox Name="DisplayNameTextBox" Height="24" Padding="3" Margin="10,72,10,0" Grid.ColumnSpan="2" TextWrapping="Wrap" Text="Display Name" VerticalAlignment="Top" RenderTransformOrigin="0.497,0.169" Style="{DynamicResource ThemedInput}"/>
         <TextBox Name="ArgumentsTextBox" Height="24" Padding="3" Margin="10,99,10,0" Grid.ColumnSpan="2" TextWrapping="Wrap" Text="Arguments" VerticalAlignment="Top" RenderTransformOrigin="0.497,0.169" GotFocus="AddApplication_ArgumentsEnterFocus" LostFocus="AddApplication_ArgumentsLeaveFocus" Style="{DynamicResource ThemedInput}"/>
         <local:Switch x:Name="AutoRestartSwitch" Width="22" Height="14" HorizontalAlignment="Left" Margin="10,132,0,0" VerticalAlignment="Top"/>

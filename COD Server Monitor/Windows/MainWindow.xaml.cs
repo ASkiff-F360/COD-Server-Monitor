@@ -18,7 +18,7 @@ namespace COD_Server_Monitor
 
          AppMonitor = new DispatcherTimer ();
          AppMonitor.Tick += new EventHandler (CheckApplicationStatus);
-         AppMonitor.Interval = new TimeSpan (0, 0, 10); //Every 10 seconds
+         AppMonitor.Interval = new TimeSpan (0, 0, 5); //Every 5 seconds
 
          AppCollection = new ObservableCollection<MonitoredApp> ();
          InterfaceValues = new UserInterface ();
@@ -51,18 +51,18 @@ namespace COD_Server_Monitor
             }
 
             // Check to see if process is no longer responding
-            process.Refresh ();
-            if (!process.Responding || process.MainWindowTitle.Contains ("ERROR"))
+            process.Refresh();
+            if (!process.Responding || process.MainWindowTitle.Contains("ERROR"))
             {
                app.ProcessID = 0;
                app.IsRunning = false;
-               OutputText.Text += String.Format ("{0} [{1}] is no longer responding\n", app.DisplayName, app.Name);
+               OutputText.Text += String.Format("{0} [{1}] is no longer responding\n", app.DisplayName, app.Name);
 
                if (app.AutoRestart)
                {
-                  process.Kill ();
+                  process.Kill();
 
-                  StartApplication (app);
+                  StartApplication(app);
                }
             }
          }
