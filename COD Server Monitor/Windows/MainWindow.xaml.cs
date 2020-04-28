@@ -52,7 +52,7 @@ namespace COD_Server_Monitor
 
             // Check to see if process is no longer responding
             process.Refresh();
-            if (!process.Responding || process.MainWindowTitle.Contains("ERROR") || process.MainWindowTitle.ToLower().Contains("out of memory"))
+            if (!process.Responding || process.MainWindowTitle.ToLower().Contains ("error") || process.MainWindowTitle.ToLower().Contains("out of memory"))
             {
                app.ProcessID = 0;
                app.IsRunning = false;
